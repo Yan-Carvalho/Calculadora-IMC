@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+    <style>
+        .calc{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 300px;
+            margin: auto;
+            background-color: rgb(61, 192, 231);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input{
+            width: 100%;
+            display: block;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button{
+            width: 50%;
+        }
+        p{
+            font: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc">
+        <input id="altura" name="altura" type="number" placeholder="altura em cm">
+        <input id="peso"  name="peso" type="number" placeholder="peso em kg">
+        <button onclick="calcularIMC()">Calcular</button>
+        <div id="resultado">
+
+        </div>
+    </div>
+    
+    <script>
+        let inputAltura = document.getElementById("altura")
+        let inputPeso = document.getElementById("peso")
+        let resultado = document.getElementById("resultado")
+
+        function calcularIMC(){
+            let altura = inputAltura.value;
+            let peso = inputPeso.value;
+            let indiceIMC = (peso)/ ((altura*altura)/10000);
+
+            resultado.innerHTML = `<p>Sue IMC é: ${indiceIMC}</p>`
+
+            if(indiceIMC<18.5){
+                resultado.innerHTML += `<p>Você está desnutrido </p>`
+            } else if(indiceIMC >=18.5 && indiceIMC<=24.9){
+                resultado.innerHTML += `<p>Você está normal </p>`
+            } else if(indiceIMC >=25 && indiceIMC<=29.9){
+                resultado.innerHTML += `<p>você está pré-obeso </p>`
+            } else if(indiceIMC >=30 && indiceIMC<=34.9){
+                resultado.innerHTML += `<p>você está com obesidade grau 1 </p>`
+            } else if(indiceIMC >=35 && indiceIMC<=39.9){
+                resultado.innerHTML += `<p>você está com obesidade grau 2 </p>`
+            } else{
+                resultado.innerHTML += `<p>você está com obesidade mórbida </p>`
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
